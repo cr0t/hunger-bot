@@ -9,11 +9,3 @@ html
 
   body
     = yield
-
-    - if current_user
-      p Текущий пользователь:
-      p = current_user.inspect
-      p = link_to 'Разлогиниться', destroy_user_session_path, method: :delete
-    - else
-      p = link_to 'Залогиниться', new_user_session_path
-      p = link_to 'Зарегистрироваться', new_user_registration_path
