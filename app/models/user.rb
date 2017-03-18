@@ -1,13 +1,10 @@
 class User < ApplicationRecord
   belongs_to :role
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
+
+  after_create :set_role
+
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, 
-         :recoverable, :rememberable, :validatable
 
   scope :customers, -> { joins(:role).where(roles: { name: 'Customer' }) }
   scope :providers, -> { joins(:role).where(roles: { name: 'Provider' }) }
@@ -15,5 +12,9 @@ class User < ApplicationRecord
 
   def display_name
     "#{name} <#{email}>"
+  end
+
+  def set_role
+    update_attribute(:role, Role.where(name: 'Provider').first)
   end
 end

@@ -25,4 +25,7 @@ ActiveAdmin.register User do
     f.actions
   end
 
+  permit_params do
+    permitted = [:email, :name, :password, :password_confirmation, :address]
+  end
 end
