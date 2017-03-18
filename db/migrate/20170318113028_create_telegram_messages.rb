@@ -4,7 +4,7 @@ class CreateTelegramMessages < ActiveRecord::Migration[5.0]
       t.references :customer, foreign_key: true, null: false
       t.json :raw
       t.integer :telegram_from_id, null: false
-      t.text :body, null: false
+      t.text :text
 
       t.timestamps
     end

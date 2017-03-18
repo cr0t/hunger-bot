@@ -5,7 +5,6 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.0.2'
 # Use postgresql as the database for Active Record
@@ -43,6 +42,9 @@ gem 'activeadmin', github: 'activeadmin'
 gem 'flattened_active_admin'
 gem 'geocoder'
 gem 'google_maps_rails'
+
+gem 'srt' # library to read and parse SRT (subtitles) files
+gem 'markov_chain_chat_bot'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
