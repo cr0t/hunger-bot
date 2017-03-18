@@ -9,9 +9,3 @@ html
 
   body
     = yield
-
-    - if current_user
-      p Текущий пользователь:
-      p = current_user.inspect
-
-    p = link_to 'Админка', admin_root_path
