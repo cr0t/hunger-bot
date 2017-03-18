@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318083846) do
+ActiveRecord::Schema.define(version: 20170318113028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,17 @@ ActiveRecord::Schema.define(version: 20170318083846) do
     t.string "name", null: false
   end
 
+  create_table "customers", force: :cascade do |t|
+    t.integer  "telegram_id",  null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "phone_number"
+    t.string   "last_address"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+    t.index ["telegram_id"], name: "index_customers_on_telegram_id", using: :btree
+  end
+
   create_table "menu", force: :cascade do |t|
     t.integer "category_id",                                          null: false
     t.string  "name",                                                 null: false
@@ -51,6 +62,17 @@ ActiveRecord::Schema.define(version: 20170318083846) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", null: false
+  end
+
+  create_table "telegram_messages", force: :cascade do |t|
+    t.integer  "customer_id",      null: false
+    t.json     "raw"
+    t.integer  "telegram_from_id", null: false
+    t.text     "body",             null: false
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+    t.index ["customer_id"], name: "index_telegram_messages_on_customer_id", using: :btree
+    t.index ["telegram_from_id"], name: "index_telegram_messages_on_telegram_from_id", using: :btree
   end
 
   create_table "users", force: :cascade do |t|
@@ -76,5 +98,6 @@ ActiveRecord::Schema.define(version: 20170318083846) do
   add_foreign_key "orders", "menu"
   add_foreign_key "orders", "users", column: "customer_id"
   add_foreign_key "orders", "users", column: "provider_id"
+  add_foreign_key "telegram_messages", "customers"
   add_foreign_key "users", "roles"
 end

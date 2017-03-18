@@ -26,7 +26,8 @@ gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
+gem 'redis', '~> 3.0'
+gem 'redis-rails', '~> 5'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -53,14 +54,15 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
-  # ...
+
   gem 'capistrano', '~> 2.15.5'
   gem 'capistrano_colors'
-  gem 'rvm-capistrano'
-  # ...
+  gem 'rvm-capistrano', require: false
 end
 
-gem 'unicorn'
+group :production do
+  gem 'unicorn'
+end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]

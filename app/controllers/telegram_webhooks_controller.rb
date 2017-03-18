@@ -3,6 +3,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   context_to_action!
   use_session!
 
+  before_action :load_customer
+
   def start(*)
     respond_with :message, text: t('.content')
   end
@@ -30,17 +32,20 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def message(message)
-    logger.info '---'
-    logger.info HungerBot.normalize(message['text'])
-    logger.info '---'
-
-    case HungerBot.normalize(message['text'])
-    when 'привет'
-      text = 'йоу! афцант готов вас обслужить! слушаю!'
+    if message['text'].present?
+      respond_with :message, text: HungerBot.process_text_message(message['text'])
     else
-      text = "You wrote: #{text}"
+      logger.info '---message[text] is nil'
+      logger.info message.inspect
+      logger.info '---'
     end
+  end
 
-    respond_with :message, text: text
+  private
+
+  def load_customer
+    from_id = payload['from']['id']
+    @customer = Customer.find_or_create_by(telegram_id: from_id)
+    # binding.pry
   end
 end
