@@ -60,10 +60,9 @@ group :development do
   gem 'capistrano', '~> 3.6'
   gem 'capistrano-rails', '~> 1.1'
   gem 'capistrano-rvm'
-end
-
-group :production do
-  gem 'unicorn'
+  gem 'capistrano3-puma'
+  gem 'capistrano3-nginx'
+  gem 'capistrano-upload-config'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
