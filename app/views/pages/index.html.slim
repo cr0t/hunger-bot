@@ -1,9 +1,17 @@
 .landing
+  .landing_bg
+  
+  .landing_header
+    h1.landing_header-title Hunger Bot
 
-  h1 Hunger Bot
+    - if current_user
+      p Текущий пользователь:
+      p = current_user.inspect
 
-  - if current_user
-    p Текущий пользователь:
-    p = current_user.inspect
+    = link_to 'Добавить в Телеграм', telegram_url, class: 'btn is-telegram'
+    
 
-  p = link_to 'Админка', admin_root_path
+  .landing_illustrations
+    .landing_illustrations-cafe
+
+  = link_to 'Партнерам', admin_root_path, class: 'link landing_partner_link'
