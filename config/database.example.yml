@@ -81,6 +81,3 @@ test:
 production:
   <<: *default
   database: hunger_production
-  host: 127.0.0.1
-  username: hunger
-  password: 123098hunger

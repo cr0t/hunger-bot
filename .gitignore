@@ -17,6 +17,7 @@
 .byebug_history
 
 config/secrets.yml
+config/database.yml
 
 .DS_Store
 .ruby-gemset

@@ -57,9 +57,9 @@ group :development do
   gem 'spring-watcher-listen', '~> 2.0.0'
   gem 'pry'
 
-  gem 'capistrano', '~> 2.15.5'
-  gem 'capistrano_colors'
-  gem 'rvm-capistrano', require: false
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
 end
 
 group :production do
