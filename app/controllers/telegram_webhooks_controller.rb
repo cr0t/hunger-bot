@@ -13,32 +13,12 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     respond_with :message, text: t('.content')
   end
 
-  def memo(*args)
-    if args.any?
-      session[:memo] = args.join(' ')
-      respond_with :message, text: t('.notice')
-    else
-      respond_with :message, text: t('.prompt')
-      save_context :memo
-    end
-    logger.info "session[:memo]: #{session[:memo]}"
-  end
-
-  def remind_me
-    logger.info "remind_me#session[:memo]: #{session[:memo]}"
-    to_remind = session.delete(:memo)
-    reply = to_remind || t('.nothing')
-    respond_with :message, text: reply
-  end
-
   def message(message)
-    if message['text'].present?
-      respond_with :message, text: HungerBot.process_text_message(message['text'])
-    else
-      logger.info '---message[text] is nil'
-      logger.info message.inspect
-      logger.info '---'
-    end
+    respond_with :message, responder_for(message).response
+  end
+
+  def callback_query(data)
+    answer_callback_query "Оки доки, #{data}"
   end
 
   private
@@ -46,6 +26,9 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   def load_customer
     from_id = payload['from']['id']
     @customer = Customer.find_or_create_by(telegram_id: from_id)
-    # binding.pry
+  end
+
+  def responder_for(message)
+    @resolver ||= BaseResponder.responder_for(message['text'])
   end
 end
