@@ -30,17 +30,6 @@
 .landing_illustrations-bubble_image
   width: 100%
 
-@keyframes bubble
-  0%
-    opacity: 0
-    transform: translateY(50px)
-  80%
-    opacity: 1
-    transform: translateY(0)
-  100%
-    opacity: 0
-    transform: translateY(-50px)
-
 .landing_illustrations-bubbles
   position: absolute
   top: -200px
@@ -57,9 +46,9 @@
   border-radius: 5px
   font-size: 12px
   opacity: 0
-  opacity: 0
   padding: 10px
   transform: translateY(50px)
+  transition: opacity
   display: flex
   position: absolute
   top: 0
@@ -67,10 +56,10 @@
   left: 0
 
   &.is-first
-    animation: bubble 3s 0s 1 normal forwards
+    animation: top_bubble 3s 0s 1 normal forwards
 
   &.is-second
-    animation: bubble 3s 2s 1 normal forwards
+    animation: top_bubble 3s 2s 1 normal forwards
 
   &.is-third
     animation: bubble 3s 4s 1 normal forwards
@@ -89,3 +78,25 @@
 .landing_illustrations-bubbles_item_name
   font-weight: 600
   margin-bottom: 5px
+
+@keyframes bubble
+  0%
+    opacity: 0
+    transform: translateY(50px)
+  80%
+    opacity: 1
+    transform: translateY(0)
+  100%
+    opacity: .25
+    transform: translateY(-50px)
+
+@keyframes top_bubble
+  0%
+    opacity: 0
+    transform: translateY(50px)
+  80%
+    opacity: 1
+    transform: translateY(0)
+  100%
+    opacity: .25
+    transform: translateY(-120px)
