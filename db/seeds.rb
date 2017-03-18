@@ -1,8 +1,18 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
-User.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password')
+Category.create!(name: 'Горячее блюдо')
+Category.create!(name: 'Салаты')
+Category.create!(name: 'Закуски')
+Category.create!(name: 'Десерты')
+Category.create!(name: 'Напитки')
+Category.create!(name: 'Пицца')
+
+Role.create!(name: 'Admin')
+Role.create!(name: 'Customer')
+Role.create!(name: 'Provider')
+
+Menu.create(name: 'Супчик с потрошками', category: Category.where(name: 'Горячее блюдо').first, price: 12.0)
+Menu.create(name: 'Уха из петуха', category: Category.where(name: 'Горячее блюдо').first, price: 10.0)
+Menu.create(name: 'Мексиканская', category: Category.where(name: 'Пицца').first, price: 50.0)
+Menu.create(name: 'Куриные крылья', category: Category.where(name: 'Закуски').first, price: 30.0)
+Menu.create(name: 'Херня в кляре', category: Category.where(name: 'Закуски').first, price: 23.0)
+Menu.create(name: 'Морсик', category: Category.where(name: 'Напитки').first, price: 9.0)
+Menu.create(name: 'Медовуха', category: Category.where(name: 'Напитки').first, price: 13.5)
