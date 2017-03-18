@@ -1,27 +1,5 @@
 @import '../variables'
 
-=cloud-move($pos1, $pos2)
-  0%
-    left: $pos1
-
-  50%
-    left: $pos2
-
-  100%
-    left: $pos1
-
-@keyframes cloud_1
-  +cloud-move(10%, 15%)
-
-@keyframes cloud_2
-  +cloud-move(20%, 30%)
-
-@keyframes cloud_3
-  +cloud-move(50%, 60%)
-
-@keyframes cloud_4
-  +cloud-move(75%, 90%)
-
 .landing_cloud
   background-repeat: no-repeat
   background-size: 100%
@@ -34,6 +12,7 @@
     height: 50px
     width: 100px
     top: 40px
+    left: 10%
 
   &.is-2
     animation: cloud_2 60s 0ms infinite
@@ -41,6 +20,7 @@
     height: 45px
     width: 90px
     top: 80px
+    left: 25%
 
   &.is-3
     animation: cloud_3 60s 0ms infinite
@@ -48,6 +28,7 @@
     height: 55px
     width: 110px
     top: 30px
+    right: 10%
 
   &.is-4
     animation: cloud_4 60s 0ms infinite
@@ -55,3 +36,4 @@
     height: 50px
     width: 100px
     top: 20px
+    right: 25%
