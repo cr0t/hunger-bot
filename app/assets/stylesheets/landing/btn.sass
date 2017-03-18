@@ -1,0 +1,23 @@
+@import '../variables'
+
+.btn
+  border-radius: 4px
+  box-shadow: 0 1px 0 rgba(black, .25)
+  padding: 15px
+  text-decoration: none
+
+  &.is-telegram
+    background-color: $color-white
+    background-image: image-url('logo_telegram')
+    background-position: left 10px center
+    background-repeat: no-repeat
+    background-size: 26px
+    color: $color-blue
+    padding-left: 45px
+    transition: background-color 150ms
+
+  &.is-telegram:hover
+    background-color: darken($color-white, 1%)
+
+  &.is-telegram:active
+    box-shadow: 0

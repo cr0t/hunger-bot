@@ -1,0 +1,74 @@
+@import '../variables'
+
+.landing_illustrations
+  align-items: flex-end
+  display: flex
+  flex-shrink: 0
+  height: 380px
+  justify-content: space-between
+  position: relative
+  width: 600px
+  z-index: 3
+
+.landing_illustrations-office,
+.landing_illustrations-cafe
+  background-repeat: no-repeat
+  background-size: 100% 100%
+
+.landing_illustrations-office
+  background-image: image-url('landing/office')
+  height: 170px
+  margin-bottom: 70px
+  width: 250px
+
+.landing_illustrations-cafe
+  background-image: image-url('landing/cafe')
+  height: 200px
+  margin-bottom: 64px
+  width: 220px
+
+.landing_illustrations-bubble_image
+  width: 100%
+
+@keyframes bubble
+  0%
+    opacity: 0
+    transform: translateY(50px)
+  100%
+    opacity: 1
+    transform: translateY(0)
+
+.landing_illustrations-bubbles
+  position: absolute
+  top: 0
+
+  &.for-office
+    left: 25px
+
+  &.for-cafe
+    right: 10px
+
+.landing_illustrations-bubbles_item
+  background-color: $color-white
+  border-radius: 5px
+  font-size: 13px
+  opacity: 0
+  opacity: 0
+  padding: 10px 15px
+  transform: translateY(50px)
+  width: 200px
+
+  &.is-first
+    animation: bubble 1s 0s 1 normal forwards
+
+  &.is-second
+    animation: bubble 1s 1s 1 normal forwards
+
+  &.is-third
+    animation: bubble 1s 2s 1 normal forwards
+
+  &.is-fourth
+    animation: bubble 1s 3s 1 normal forwards
+
+  & + .landing_illustrations-bubbles_item
+    margin-top: 10px

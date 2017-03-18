@@ -1,0 +1,39 @@
+@import '../variables'
+
+.landing_cloud
+  background-repeat: no-repeat
+  background-size: 100%
+  position: absolute
+  z-index: 2
+
+  &.is-1
+    animation: cloud_1 60s 0ms infinite
+    background-image: image-url('landing/cloud_1')
+    height: 50px
+    width: 100px
+    top: 40px
+    left: 10%
+
+  &.is-2
+    animation: cloud_2 60s 0ms infinite
+    background-image: image-url('landing/cloud_2')
+    height: 45px
+    width: 90px
+    top: 80px
+    left: 25%
+
+  &.is-3
+    animation: cloud_3 60s 0ms infinite
+    background-image: image-url('landing/cloud_3')
+    height: 55px
+    width: 110px
+    top: 30px
+    right: 10%
+
+  &.is-4
+    animation: cloud_4 60s 0ms infinite
+    background-image: image-url('landing/cloud_4')
+    height: 50px
+    width: 100px
+    top: 20px
+    right: 25%

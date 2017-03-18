@@ -1,6 +1,11 @@
 .landing
-  .landing_bg
+  .landing-bg
   
+  .landing_cloud.is-1
+  .landing_cloud.is-2
+  .landing_cloud.is-3
+  .landing_cloud.is-4
+
   .landing_header
     h1.landing_header-title Hunger Bot
 
@@ -9,9 +14,21 @@
       p = current_user.inspect
 
     = link_to 'Добавить в Телеграм', telegram_url, class: 'btn is-telegram'
-    
 
   .landing_illustrations
-    .landing_illustrations-cafe
+    = image_tag 'landing/office', class: 'landing_illustrations-office'
+    = image_tag 'landing/cafe', class: 'landing_illustrations-cafe'
 
-  = link_to 'Партнерам', admin_root_path, class: 'link landing_partner_link'
+    .landing_illustrations-bubbles.for-office
+      .landing_illustrations-bubbles_item.is-first
+        'Что бы нам сегодня поесть на обед?
+      .landing_illustrations-bubbles_item.is-third
+        'Везите!
+
+    .landing_illustrations-bubbles.for-cafe
+      .landing_illustrations-bubbles_item.is-second
+        'Покушайте шашлыков, шайтаны...
+      .landing_illustrations-bubbles_item.is-fourth
+        'ЩА!
+
+  = link_to 'Партнерам', admin_root_path, class: 'link landing-partner_link'
