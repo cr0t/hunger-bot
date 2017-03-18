@@ -11,6 +11,6 @@
  * It is generally better to create a new file per style scope.
  *
  *= require ./reset
- *= require_tree ./application
+ *= require_tree ./landing
  *= require_self
  */
