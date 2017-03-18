@@ -16,6 +16,9 @@ set :deploy_to,     "/var/www/#{application}"
 set :keep_releases, 5
 set :ssh_options,   { forward_agent: true }
 
+#default_run_options[:pty] = true
+set :pty, true
+
 server 'hunger-bot.datacrafts.io', :app, :web, :db, primary: true
 
 # to use new assets approach

@@ -8,11 +8,6 @@
 
   .landing_header
     h1.landing_header-title Hunger Bot
-
-    - if current_user
-      p Текущий пользователь:
-      p = current_user.inspect
-
     = link_to 'Добавить в Телеграм', telegram_url, class: 'btn is-telegram'
 
   .landing_illustrations

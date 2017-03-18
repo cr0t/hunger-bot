@@ -4,10 +4,10 @@
   align-items: flex-end
   display: flex
   flex-shrink: 0
-  height: 420px
+  height: 200px
   justify-content: space-between
   position: relative
-  width: 600px
+  width: 800px
   z-index: 3
 
 .landing_illustrations-office,
@@ -43,7 +43,7 @@
 
 .landing_illustrations-bubbles
   position: absolute
-  top: 0
+  top: -200px
   width: 200px
 
   &.for-office
@@ -67,16 +67,16 @@
   left: 0
 
   &.is-first
-    animation: bubble 2s 0s 1 normal forwards
+    animation: bubble 3s 0s 1 normal forwards
 
   &.is-second
-    animation: bubble 2s 1s 1 normal forwards
+    animation: bubble 3s 2s 1 normal forwards
 
   &.is-third
-    animation: bubble 2s 2s 1 normal forwards
+    animation: bubble 3s 4s 1 normal forwards
 
   &.is-fourth
-    animation: bubble 2s 3s 1 normal forwards
+    animation: bubble 3s 6s 1 normal forwards
 
   & + .landing_illustrations-bubbles_item
     margin-top: 10px
