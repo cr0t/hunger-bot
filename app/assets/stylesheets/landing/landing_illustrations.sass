@@ -4,7 +4,7 @@
   align-items: flex-end
   display: flex
   flex-shrink: 0
-  height: 380px
+  height: 420px
   justify-content: space-between
   position: relative
   width: 600px
@@ -34,13 +34,17 @@
   0%
     opacity: 0
     transform: translateY(50px)
-  100%
+  80%
     opacity: 1
     transform: translateY(0)
+  100%
+    opacity: 0
+    transform: translateY(-50px)
 
 .landing_illustrations-bubbles
   position: absolute
   top: 0
+  width: 200px
 
   &.for-office
     left: 25px
@@ -51,24 +55,37 @@
 .landing_illustrations-bubbles_item
   background-color: $color-white
   border-radius: 5px
-  font-size: 13px
+  font-size: 12px
   opacity: 0
   opacity: 0
-  padding: 10px 15px
+  padding: 10px
   transform: translateY(50px)
-  width: 200px
+  display: flex
+  position: absolute
+  top: 0
+  right: 0
+  left: 0
 
   &.is-first
-    animation: bubble 1s 0s 1 normal forwards
+    animation: bubble 2s 0s 1 normal forwards
 
   &.is-second
-    animation: bubble 1s 1s 1 normal forwards
+    animation: bubble 2s 1s 1 normal forwards
 
   &.is-third
-    animation: bubble 1s 2s 1 normal forwards
+    animation: bubble 2s 2s 1 normal forwards
 
   &.is-fourth
-    animation: bubble 1s 3s 1 normal forwards
+    animation: bubble 2s 3s 1 normal forwards
 
   & + .landing_illustrations-bubbles_item
     margin-top: 10px
+
+.landing_illustrations-bubbles_item_avatar
+  width: 25px
+  height: 25px
+  margin-right: 10px
+
+.landing_illustrations-bubbles_item_name
+  font-weight: 600
+  margin-bottom: 5px
