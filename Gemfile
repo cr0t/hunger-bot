@@ -40,6 +40,7 @@ gem 'devise'
 
 gem 'telegram-bot'
 gem 'activeadmin', github: 'activeadmin'
+gem 'formadmin'
 gem 'geocoder'
 
 group :development, :test do
