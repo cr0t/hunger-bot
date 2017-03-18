@@ -4,7 +4,7 @@ rails_env = ENV['RAILS_ENV'] || 'development'
 
 worker_processes 5
 
-working_directory APP_PATH + '/'
+working_directory APP_PATH + '/current'
 
 preload_app true
 
@@ -16,7 +16,7 @@ stderr_path APP_PATH + '/shared/log/unicorn.stderr.log'
 stdout_path APP_PATH + '/shared/log/unicorn.stdout.log'
 
 before_exec do |server|
- ENV['BUNDLE_GEMFILE'] = APP_PATH + '/Gemfile'
+ ENV['BUNDLE_GEMFILE'] = APP_PATH + '/current/Gemfile'
 end
 
 before_fork do |server, worker|
