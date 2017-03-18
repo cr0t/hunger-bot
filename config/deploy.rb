@@ -1,47 +1,33 @@
-require 'bundler/capistrano'
-require 'rvm/capistrano'
+# config valid only for current version of Capistrano
+lock '3.8.0'
 
-set :rvm_type,        :system
-set :rvm_ruby_string, 'ruby-2.3.3@hunger-bot.datacrafts.io'
+set :application, 'hunger-bot'
+set :repo_url, 'git@github.com:cr0t/hunger-bot.git'
 
-set :application, 'hunger-bot.datacrafts.io'
+# Default branch is :master
+# ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
 
-set :scm, :git
-set :repository,  'https://github.com/cr0t/hunger-bot.git'
-set :branch,      'master'
+# Default deploy_to directory is /var/www/my_app_name
+# set :deploy_to, "/var/www/my_app_name"
 
-set :use_sudo,     false
-set :user,         'daluboi' # username on the server
-set :deploy_to,     "/var/www/#{application}"
-set :keep_releases, 5
-set :ssh_options,   { forward_agent: true }
+# Default value for :format is :airbrussh.
+# set :format, :airbrussh
 
-#default_run_options[:pty] = true
-set :pty, true
+# You can configure the Airbrussh format using :format_options.
+# These are the defaults.
+# set :format_options, command_output: true, log_file: "log/capistrano.log", color: :auto, truncate: :auto
 
-server 'hunger-bot.datacrafts.io', :app, :web, :db, primary: true
+# Default value for :pty is false
+# set :pty, true
 
-# to use new assets approach
-set :normalize_asset_timestamps, false
+# Default value for :linked_files is []
+# append :linked_files, "config/database.yml", "config/secrets.yml"
 
-# unicorn related
-set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
-set :unicorn_pid,  "#{deploy_to}/shared/pids/unicorn.pid"
+# Default value for linked_dirs is []
+# append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "public/system"
 
-namespace :deploy do
-  after 'deploy', 'deploy:cleanup'
+# Default value for default_env is {}
+# set :default_env, { path: "/opt/ruby/bin:$PATH" }
 
-  desc 'Zero-downtime restart of Unicorn'
-  task :restart do
-   # run "sudo /etc/init.d/unicorn_#{application} restart"
-     run "sudo /etc/init.d/unicorn restart"
-  end
-
-  task :start do
-    run "sudo /etc/init.d/unicorn start"
-  end
-
-  task :stop do
-    run "sudo /etc/init.d/unicorn stop"
-  end
-end
+# Default value for keep_releases is 5
+# set :keep_releases, 5
