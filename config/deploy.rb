@@ -7,7 +7,7 @@ set :rvm_ruby_string, 'ruby-2.3.3@hunger-bot.datacrafts.io'
 set :application, 'hunger-bot.datacrafts.io'
 
 set :scm, :git
-set :repository,  'cr0t/hunger-bot.git'
+set :repository,  'https://github.com/cr0t/hunger-bot.git'
 set :branch,      'master'
 
 set :use_sudo,     false
