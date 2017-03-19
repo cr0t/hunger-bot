@@ -25,6 +25,18 @@ ActiveAdmin.register User do
     f.actions
   end
 
+  show do |user|
+    attributes_table do
+      row :name
+      row :email
+      row :role
+      row :address
+      div do
+        render 'shared/map', lat: user.lat, lng: user.lng
+      end
+    end
+  end
+
   permit_params do
     permitted = [:email, :name, :password, :password_confirmation, :address]
   end
