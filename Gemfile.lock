@@ -86,8 +86,8 @@ GEM
       capistrano (>= 3.0)
     capistrano3-nginx (2.1.5)
       capistrano (>= 3.0.0)
-    capistrano3-puma (3.0.0)
-      capistrano (~> 3.7)
+    capistrano3-puma (2.0.0)
+      capistrano (~> 3.5)
       capistrano-bundler
       puma (~> 3.4)
     coderay (1.1.1)
