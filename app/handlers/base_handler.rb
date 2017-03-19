@@ -98,7 +98,7 @@ class BaseHandler
             item.name
           },
           get_callback: ->(item) {
-            {action: 'add_item', data: {id: item.id, name: item.name, price: item.price}}
+            {action: 'add_item', data: {id: item.id}}
           }
         )
       when 'clean'
@@ -115,7 +115,8 @@ class BaseHandler
     return '' unless @session[:cart].present?
 
     sum = @session[:cart].reduce(0) do |acc, item|
-      acc += item['price'].to_i
+      menu = Menu.find(item[:id])
+      acc += menu.price
       acc
     end
 
