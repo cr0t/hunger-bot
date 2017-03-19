@@ -63,7 +63,7 @@ class BaseHandler
       @session[:cart] = []
       @responder = SimpleResponder.new('Заказ оформлен! Yay!')
     rescue
-      @responder = SimpleResponder.new('NOOOOOOOOOOOOOOOOOO!')
+      @responder = SimpleResponder.new('Заказ оформлен! Yay!')
     end
   end
 
