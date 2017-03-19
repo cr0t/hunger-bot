@@ -1,14 +1,10 @@
-h2 Sign up!!!
+h2 Sign up
 = form_for(resource, as: resource_name, url: user_registration_path, format: :json) do |f|
   = devise_error_messages!
   .field
     = f.label :email
     br/
     = f.email_field :email, autofocus: true
-  .field
-    = f.label :name
-    br/
-    = f.text_field :name
   .field
     = f.label :password
     - if @minimum_password_length
@@ -20,10 +16,6 @@ h2 Sign up!!!
     = f.label :password_confirmation
     br/
     = f.password_field :password_confirmation, autocomplete: "off"
-  .field
-    = f.label :address
-    br/
-    = f.text_field :address
   .actions
     = f.submit "Sign up"
 = render "devise/shared/links"

@@ -3,13 +3,12 @@ ActiveAdmin.register User do
 
   index do
     selectable_column
-    id_column
     column :email do |user|
       link_to user.email, admin_user_path(user)
     end
-    column :current_sign_in_at
-    column :sign_in_count
-    column :created_at
+    column :name
+    column :address
+    column :role
     actions
   end
 
@@ -19,10 +18,11 @@ ActiveAdmin.register User do
   filter :created_at
 
   form do |f|
+    f.semantic_errors
     f.inputs "Admin Details" do
-      f.input :email
-      f.input :password
-      f.input :password_confirmation
+      f.input :email, input_html: { disabled: true }
+      f.input :name
+      f.input :address, input_html: { rows: 1 }
     end
     f.actions
   end
