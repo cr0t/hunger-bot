@@ -13,6 +13,8 @@ class BaseHandler
     'browse_items_add_item'
   ]
 
+  attr_accessor :responder
+
   def initialize(session, customer)
     @session = session
     @customer = customer
@@ -20,6 +22,8 @@ class BaseHandler
 
   def handle_message(message)
     @message = message
+    find_responder_for_message!
+
     if step && RESPONDERS_MAPPING.include?(step)
       @session[:current_step] = step
     elsif step
@@ -84,11 +88,11 @@ class BaseHandler
 
   private
 
-  def responder
-    @responder ||= case step
+  def find_responder_for_message!
+    @responder = case step
     when 'browse_items'
         CollectionResponder.new(
-          prompt: 'Какая категория вас интересует?',
+          prompt: 'Что будем кушать?',
           collection: Menu.all,
           get_text: ->(item) { item.name },
           get_callback: ->(item) { {action: 'add_item', data: {id: item.id}} }
