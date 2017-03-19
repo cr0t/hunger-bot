@@ -1,4 +1,5 @@
 set :stage, :production
+set :nginx_use_ssl, true
 
 server 'hunger-bot.datacrafts.io', user: 'hunger-bot', roles: %w{app web db}
 
