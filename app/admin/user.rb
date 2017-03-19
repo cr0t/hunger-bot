@@ -4,7 +4,9 @@ ActiveAdmin.register User do
   index do
     selectable_column
     id_column
-    column :email
+    column :email do |user|
+      link_to user.email, admin_user_path(user)
+    end
     column :current_sign_in_at
     column :sign_in_count
     column :created_at
@@ -23,6 +25,18 @@ ActiveAdmin.register User do
       f.input :password_confirmation
     end
     f.actions
+  end
+
+  show do |user|
+    attributes_table do
+      row :name
+      row :email
+      row :role
+      row :address
+      div do
+        render 'shared/map', lat: user.lat, lng: user.lng
+      end
+    end
   end
 
   permit_params do
