@@ -4,6 +4,8 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   use_session!
 
   before_action :load_customer
+  before_action :load_handler
+  after_action :inspect_session
 
   def start(*)
     respond_with :message, text: t('.content')
@@ -14,11 +16,13 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def message(message)
-    respond_with :message, responder_for(message).response
+    @handler.handle_message(message)
+    respond_with(:message, @handler.response) if @handler.should_handle?
   end
 
-  def callback_query(data)
-    answer_callback_query "Оки доки, #{data}"
+  def callback_query(callback_query)
+    @handler.handle_callback(callback_query)
+    respond_with(:message, @handler.response) if @handler.should_handle?
   end
 
   private
@@ -28,7 +32,11 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
     @customer = Customer.find_or_create_by(telegram_id: from_id)
   end
 
-  def responder_for(message)
-    @resolver ||= BaseResponder.responder_for(message['text'])
+  def load_handler
+    @handler ||= BaseHandler.new(session)
+  end
+
+  def inspect_session
+    Rails::logger.info session.inspect
   end
 end
