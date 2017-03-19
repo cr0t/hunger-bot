@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/activeadmin/activeadmin.git
-  revision: 7834ed62fdfc0a784d3b123c347cbb59a87ff62e
+  revision: 7461a55e8c367cb6546c96ed7bfb90c952da2eb5
   specs:
     activeadmin (1.0.0.pre5)
       arbre (~> 1.0, >= 1.0.2)
@@ -86,8 +86,8 @@ GEM
       capistrano (>= 3.0)
     capistrano3-nginx (2.1.5)
       capistrano (>= 3.0.0)
-    capistrano3-puma (2.0.0)
-      capistrano (~> 3.5)
+    capistrano3-puma (3.0.0)
+      capistrano (~> 3.7)
       capistrano-bundler
       puma (~> 3.4)
     coderay (1.1.1)
