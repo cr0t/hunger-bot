@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170318113028) do
+ActiveRecord::Schema.define(version: 20170319080410) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -48,6 +48,7 @@ ActiveRecord::Schema.define(version: 20170318113028) do
     t.integer "category_id",                                          null: false
     t.string  "name",                                                 null: false
     t.decimal "price",       precision: 10, scale: 2, default: "0.0"
+    t.integer "provider_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -99,6 +100,7 @@ ActiveRecord::Schema.define(version: 20170318113028) do
   end
 
   add_foreign_key "menu", "categories"
+  add_foreign_key "menu", "users", column: "provider_id"
   add_foreign_key "orders", "menu"
   add_foreign_key "orders", "users", column: "customer_id"
   add_foreign_key "orders", "users", column: "provider_id"
