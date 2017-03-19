@@ -105,7 +105,7 @@ class BaseHandler
         BooleanResponder.new(prompt: 'Удалить заказ?')
       when 'checkout'
         BooleanResponder.new(
-          prompt: "Оформим заказ?\n #{serialise_cart}"
+          prompt: "Оформим заказ?\n#{serialise_cart}"
         )
       else FallbackResponder.new
     end
@@ -113,17 +113,14 @@ class BaseHandler
 
   def serialise_cart
     return '' unless @session[:cart].present?
-
-    sum = @session[:cart].reduce(0) do |acc, item|
-      menu = Menu.find(item[:id])
-      acc += menu.price
+    menus = Menu.where(id: @session[:cart].map { |item| item['id'] })
+    sum = menus.reduce(0) do |acc, item|
+      acc += item.price
       acc
     end
-
-    list = @session[:cart].try do |cart|
-      cart.map { |i| [i['name'], i['price']].join(' - ') }
+    list = menus.map do |item|
+      [item.name, item.price].join(': ')
     end
-
     list << "Total: #{sum}"
     list.join("\n")
   end
