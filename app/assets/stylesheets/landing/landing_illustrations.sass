@@ -1,6 +1,7 @@
 @import '../_utilities'
 
 .landing_illustrations
+  animation: fade_out 31s 1 normal forwards
   align-items: flex-end
   display: flex
   flex-shrink: 0
@@ -106,3 +107,9 @@
   100%
     opacity: .25
     transform: translateY(-120px)
+
+@keyframes fade_out
+  0%
+    z-index: 3
+  100%
+    z-index: 2
