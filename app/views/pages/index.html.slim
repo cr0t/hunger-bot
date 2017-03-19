@@ -1,6 +1,6 @@
 .landing
   .landing-bg
-  
+
   .landing_cloud.is-1
   .landing_cloud.is-2
   .landing_cloud.is-3
@@ -11,31 +11,31 @@
     = link_to 'Добавить в Телеграм', telegram_url, class: 'btn is-telegram'
 
   .landing_illustrations
-    = image_tag 'landing/office', class: 'landing_illustrations-office'
-    = image_tag 'landing/cafe', class: 'landing_illustrations-cafe'
+    = image_tag 'landing/office.svg', class: 'landing_illustrations-office'
+    = image_tag 'landing/cafe.svg', class: 'landing_illustrations-cafe'
 
     .landing_illustrations-bubbles.for-office
       .landing_illustrations-bubbles_item.is-first
-        = image_tag 'landing/avatar_1', class: 'landing_illustrations-bubbles_item_avatar'
+        = image_tag 'landing/avatar_1.svg', class: 'landing_illustrations-bubbles_item_avatar'
         .landing_illustrations-bubbles_content
           p.landing_illustrations-bubbles_item_name Мистер Твистер
           'Что бы нам сегодня поесть на обед?
       .landing_illustrations-bubbles_item.is-third
-        = image_tag 'landing/avatar_1', class: 'landing_illustrations-bubbles_item_avatar'
+        = image_tag 'landing/avatar_1.svg', class: 'landing_illustrations-bubbles_item_avatar'
         .landing_illustrations-bubbles_content
           p.landing_illustrations-bubbles_item_name Мистер Твистер
           'Везите!
 
     .landing_illustrations-bubbles.for-cafe
       .landing_illustrations-bubbles_item.is-second
-        = image_tag 'landing/avatar_2', class: 'landing_illustrations-bubbles_item_avatar'
+        = image_tag 'landing/avatar_2.svg', class: 'landing_illustrations-bubbles_item_avatar'
         .landing_illustrations-bubbles_content
-          p.landing_illustrations-bubbles_item_name Пруфик
+          p.landing_illustrations-bubbles_item_name Жирафик Рафик
           'Покушайте шашлыков, шайтаны...
       .landing_illustrations-bubbles_item.is-fourth
-        = image_tag 'landing/avatar_2', class: 'landing_illustrations-bubbles_item_avatar'
+        = image_tag 'landing/avatar_2.svg', class: 'landing_illustrations-bubbles_item_avatar'
         .landing_illustrations-bubbles_content
-          p.landing_illustrations-bubbles_item_name Пруфик
+          p.landing_illustrations-bubbles_item_name Жирафик Рафик
           'ЩА!
 
   = link_to 'Партнерам', admin_root_path, class: 'link landing-partner_link'
