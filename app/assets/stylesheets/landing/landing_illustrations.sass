@@ -1,4 +1,4 @@
-@import '../variables'
+@import '../_utilities'
 
 .landing_illustrations
   align-items: flex-end
@@ -7,8 +7,11 @@
   height: 200px
   justify-content: space-between
   position: relative
-  width: 800px
   z-index: 3
+  width: 800px
+
+  +screen(768px)
+    width: auto
 
 .landing_illustrations-office,
 .landing_illustrations-cafe
@@ -34,6 +37,9 @@
   position: absolute
   top: -200px
   width: 200px
+
+  +screen(768px)
+    top: -250px
 
   &.for-office
     left: 25px
