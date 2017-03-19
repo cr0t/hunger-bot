@@ -13,6 +13,8 @@ class BaseHandler
     'browse_items_add_item'
   ]
 
+  attr_accessor :responder
+
   def initialize(session, customer)
     @session = session
     @customer = customer
@@ -20,6 +22,8 @@ class BaseHandler
 
   def handle_message(message)
     @message = message
+    find_responder_for_message!
+
     if step && RESPONDERS_MAPPING.include?(step)
       @session[:current_step] = step
     elsif step
@@ -84,21 +88,41 @@ class BaseHandler
 
   private
 
-  def responder
-    @responder ||= case step
+  def find_responder_for_message!
+    @responder = case step
     when 'browse_items'
         CollectionResponder.new(
-          prompt: 'Какая категория вас интересует?',
+          prompt: 'Что будем кушать?',
           collection: Menu.all,
-          get_text: ->(item) { item.name },
-          get_callback: ->(item) { {action: 'add_item', data: {id: item.id}} }
+          get_text: ->(item) {
+            item.name
+          },
+          get_callback: ->(item) {
+            {action: 'add_item', data: {id: item.id}}
+          }
         )
       when 'clean'
         BooleanResponder.new(prompt: 'Удалить заказ?')
       when 'checkout'
-        BooleanResponder.new(prompt: 'Оформим заказ?')
+        BooleanResponder.new(
+          prompt: "Оформим заказ?\n#{serialise_cart}"
+        )
       else FallbackResponder.new
     end
+  end
+
+  def serialise_cart
+    return '' unless @session[:cart].present?
+    menus = Menu.where(id: @session[:cart].map { |item| item['id'] })
+    sum = menus.reduce(0) do |acc, item|
+      acc += item.price
+      acc
+    end
+    list = menus.map do |item|
+      [item.name, item.price].join(': ')
+    end
+    list << "Total: #{sum}"
+    list.join("\n")
   end
 
   def step
