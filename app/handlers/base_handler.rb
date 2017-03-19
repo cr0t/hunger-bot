@@ -94,15 +94,37 @@ class BaseHandler
         CollectionResponder.new(
           prompt: 'Что будем кушать?',
           collection: Menu.all,
-          get_text: ->(item) { item.name },
-          get_callback: ->(item) { {action: 'add_item', data: {id: item.id}} }
+          get_text: ->(item) {
+            item.name
+          },
+          get_callback: ->(item) {
+            {action: 'add_item', data: {id: item.id, name: item.name, price: item.price}}
+          }
         )
       when 'clean'
         BooleanResponder.new(prompt: 'Удалить заказ?')
       when 'checkout'
-        BooleanResponder.new(prompt: 'Оформим заказ?')
+        BooleanResponder.new(
+          prompt: "Оформим заказ?\n #{serialise_cart}"
+        )
       else FallbackResponder.new
     end
+  end
+
+  def serialise_cart
+    return '' unless @session[:cart].present?
+
+    sum = @session[:cart].reduce(0) do |acc, item|
+      acc += item['price'].to_i
+      acc
+    end
+
+    list = @session[:cart].try do |cart|
+      cart.map { |i| [i['name'], i['price']].join(' - ') }
+    end
+
+    list << "Total: #{sum}"
+    list.join("\n")
   end
 
   def step
