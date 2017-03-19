@@ -10,11 +10,12 @@ class BaseHandler
     'checkout_reject',
     'clean_confirm',
     'clean_reject',
-    'browse_categories_add_item'
+    'browse_items_add_item'
   ]
 
-  def initialize(session)
+  def initialize(session, customer)
     @session = session
+    @customer = customer
   end
 
   def handle_message(message)
@@ -34,7 +35,6 @@ class BaseHandler
     end.with_indifferent_access
 
     action = "#{@session[:current_step]}_#{callback_data[:action]}"
-    puts action
     return unless action.in?(ACTIONS)
     self.send(action.to_sym, callback_data[:data])
   end
@@ -48,41 +48,50 @@ class BaseHandler
   end
 
   def checkout_confirm(*)
-    # Create order here...
-    @session[:current_step] = nil
-    @session[:cart] = []
+    begin
+      ActiveRecord::Base.transaction do
+        @session[:cart].each do |item|
+          menu = Menu.find(item['id'])
+          Order.create!(menu: menu, provider: menu.provider, customer: @customer)
+        end
+      end
+      @session[:current_step] = nil
+      @session[:cart] = []
+      @responder = SimpleResponder.new('Заказ оформлен! Yay!')
+    rescue
+      @responder = SimpleResponder.new('NOOOOOOOOOOOOOOOOOO!')
+    end
   end
 
   def checkout_reject(*)
-    # Do nothing
+    @responder = SimpleResponder.new('Ладно, выбирайте дальше...')
   end
 
   def clean_confirm(*)
     @session[:cart] = []
+    @responder = SimpleResponder.new('Корзина чиста!')
   end
 
   def clean_reject(*)
-    # Do nothing
+    @responder = SimpleResponder.new('Ладно, выбирайте дальше...')
   end
 
-  def browse_categories_add_item(data)
+  def browse_items_add_item(data)
     @session[:cart] ||= []
     @session[:cart] << data
+    @responder = SimpleResponder.new('Добавлено!')
   end
 
   private
 
   def responder
     @responder ||= case step
-      when 'browse_categories'
+    when 'browse_items'
         CollectionResponder.new(
           prompt: 'Какая категория вас интересует?',
-          collection: [
-            {text: '1', id: '1'},
-            {text: '2', id: '2'}
-          ],
-          get_text: ->(item) { item[:text] },
-          get_callback: ->(item) { {action: 'add_item', data: {id: item[:id]}} }
+          collection: Menu.all,
+          get_text: ->(item) { item.name },
+          get_callback: ->(item) { {action: 'add_item', data: {id: item.id}} }
         )
       when 'clean'
         BooleanResponder.new(prompt: 'Удалить заказ?')
