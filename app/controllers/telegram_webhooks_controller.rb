@@ -40,6 +40,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
       logger.info message.inspect
       logger.info '---'
     end
+  end
 
   private
 
