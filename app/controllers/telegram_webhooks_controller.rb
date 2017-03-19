@@ -22,7 +22,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
 
   def callback_query(callback_query)
     @handler.handle_callback(callback_query)
-    respond_with(:message, @handler.response) if @handler.should_handle?
+    respond_with(:message, @handler.response)
   end
 
   private
@@ -33,7 +33,7 @@ class TelegramWebhooksController < Telegram::Bot::UpdatesController
   end
 
   def load_handler
-    @handler ||= BaseHandler.new(session)
+    @handler ||= BaseHandler.new(session, @customer)
   end
 
   def inspect_session
