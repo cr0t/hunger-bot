@@ -1,8 +1,6 @@
 # Hunger Bot
 
-## Important Note
-
-**Please, do not use this code.**
+**Important Note:** Please, do not use this code!
 
 Maybe, only for research purposes.
 
