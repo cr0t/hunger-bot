@@ -1,24 +1,21 @@
-# README
+# Hunger Bot
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Important Note
 
-Things you may want to cover:
+**Please, do not use this code.**
 
-* Ruby version
+Maybe, only for research purposes.
 
-* System dependencies
+It was created for fun and no profit. We provide it AS IS, without any guarantees. It ~may~ most likely contain bugs, security vulnerabilities, and other hidden problems.
 
-* Configuration
+## Intro
 
-* Database creation
+It is a just-for-fun project written during the Ottepel Hackathon event that took part in Saratov, Russia on March 18-19th, 2017.
 
-* Database initialization
+Team behind it:
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+- Maxim Krasnoshein
+- Sergey Lupinos
+- Denis Lugovoy
+- Nikita Luchko
+- Sergey Kuznetsov
