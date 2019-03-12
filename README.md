@@ -8,7 +8,7 @@ We created it for fun and no profit. We provide it AS IS, without any guarantees
 
 ## Intro
 
-It is a just-for-fun project – Telegram bot – written during the Ottepel Hackathon event that took part in Saratov, Russia on March 18-19th, 2017.
+It is just-for-fun project – Telegram bot – written during the Ottepel Hackathon event that took part in Saratov, Russia on March 18-19th, 2017.
 
 Team behind it:
 
